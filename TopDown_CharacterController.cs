@@ -12,12 +12,11 @@ public class TopDown_CharacterController : MonoBehaviour
     {
         //Conseguir rigidbody2d.
         rb = GetComponent<Rigidbody2D>();
-
     }
 
     private void Update()
     {
-        //Conseguir direcion (normalizada) y multiplicar por velocidad del jugador.
+        //Conseguir direccion (normalizada) y multiplicar por velocidad del jugador.
         float moveX = 0;
         float moveY = 0;
 
@@ -25,15 +24,17 @@ public class TopDown_CharacterController : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow)) moveY -= 1;
         if (Input.GetKey(KeyCode.LeftArrow)) moveX -= 1;
         if (Input.GetKey(KeyCode.RightArrow)) moveX += 1;
+        
         SetVelocity(new Vector2(moveX,moveY).normalized);
-
+        
+        //Debug
         Debug.Log("Normalized direction: " + new Vector2(moveX, moveY).normalized);
         Debug.Log("Direction: " + new Vector2(moveX, moveY));
     }
 
     void SetVelocity(Vector2 direction)
     {
-        //Añadir velocidad.
+        //AÃ±adir velocidad.
         rb.velocity = direction * player_Speed * player_SpeedMultiplier * Time.deltaTime;
     }
 
